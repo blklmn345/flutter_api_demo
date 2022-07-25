@@ -14,7 +14,7 @@ class UserRepositoryImpl implements UserRepository {
     return apiClient
         .getUserAccounts(userId)
         .then((accounts) => ApiResponse.success(accounts))
-        .catchError((error) => ApiResponse<List<Account>>.failure(error));
+        .catchError((error) => throw ApiResponse.failure(error));
   }
 
   @override
@@ -22,7 +22,7 @@ class UserRepositoryImpl implements UserRepository {
     return apiClient
         .getUserDetail(userId)
         .then((userDetail) => ApiResponse.success(userDetail))
-        .catchError((error) => ApiResponse<User?>.failure(error));
+        .catchError((error) => throw ApiResponse.failure(error));
   }
 
   @override
@@ -30,6 +30,6 @@ class UserRepositoryImpl implements UserRepository {
     return apiClient
         .getUsers()
         .then((users) => ApiResponse.success(users))
-        .catchError((error) => ApiResponse<List<User>>.failure(error));
+        .catchError((error) => throw ApiResponse.failure(error));
   }
 }
