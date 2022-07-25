@@ -13,6 +13,6 @@ class AccountRepositoryImpl implements AccountRepository {
     return apiClient
         .getAccountDetail(accountId)
         .then((accountDetail) => ApiResponse.success(accountDetail))
-        .catchError((error) => ApiResponse<Account>.failure(error));
+        .catchError((error) => throw ApiResponse<Account>.failure(error));
   }
 }
