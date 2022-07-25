@@ -69,18 +69,18 @@ class _ApiClient implements ApiClient {
   }
 
   @override
-  Future<Account> getAccountDetail(id) async {
+  Future<Account?> getAccountDetail(id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final _result = await _dio.fetch<Map<String, dynamic>>(
+    final _result = await _dio.fetch<Map<String, dynamic>?>(
         _setStreamType<Account>(
             Options(method: 'GET', headers: _headers, extra: _extra)
                 .compose(_dio.options, '/accounts/${id}',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = Account.fromJson(_result.data!);
+    final value = _result.data == null ? null : Account.fromJson(_result.data!);
     return value;
   }
 

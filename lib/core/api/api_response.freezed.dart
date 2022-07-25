@@ -19,19 +19,19 @@ mixin _$ApiResponse<R> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(R response) success,
-    required TResult Function(DioError error) failure,
+    required TResult Function(Object? error) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(R response)? success,
-    TResult Function(DioError error)? failure,
+    TResult Function(Object? error)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(R response)? success,
-    TResult Function(DioError error)? failure,
+    TResult Function(Object? error)? failure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -139,7 +139,7 @@ class _$Success<R> implements Success<R> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(R response) success,
-    required TResult Function(DioError error) failure,
+    required TResult Function(Object? error) failure,
   }) {
     return success(response);
   }
@@ -148,7 +148,7 @@ class _$Success<R> implements Success<R> {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(R response)? success,
-    TResult Function(DioError error)? failure,
+    TResult Function(Object? error)? failure,
   }) {
     return success?.call(response);
   }
@@ -157,7 +157,7 @@ class _$Success<R> implements Success<R> {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(R response)? success,
-    TResult Function(DioError error)? failure,
+    TResult Function(Object? error)? failure,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -212,7 +212,7 @@ abstract class _$$FailureCopyWith<R, $Res> {
   factory _$$FailureCopyWith(
           _$Failure<R> value, $Res Function(_$Failure<R>) then) =
       __$$FailureCopyWithImpl<R, $Res>;
-  $Res call({DioError error});
+  $Res call({Object? error});
 }
 
 /// @nodoc
@@ -231,10 +231,7 @@ class __$$FailureCopyWithImpl<R, $Res>
     Object? error = freezed,
   }) {
     return _then(_$Failure<R>(
-      error == freezed
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as DioError,
+      error == freezed ? _value.error : error,
     ));
   }
 }
@@ -245,7 +242,7 @@ class _$Failure<R> implements Failure<R> {
   const _$Failure(this.error);
 
   @override
-  final DioError error;
+  final Object? error;
 
   @override
   String toString() {
@@ -273,7 +270,7 @@ class _$Failure<R> implements Failure<R> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(R response) success,
-    required TResult Function(DioError error) failure,
+    required TResult Function(Object? error) failure,
   }) {
     return failure(error);
   }
@@ -282,7 +279,7 @@ class _$Failure<R> implements Failure<R> {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(R response)? success,
-    TResult Function(DioError error)? failure,
+    TResult Function(Object? error)? failure,
   }) {
     return failure?.call(error);
   }
@@ -291,7 +288,7 @@ class _$Failure<R> implements Failure<R> {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(R response)? success,
-    TResult Function(DioError error)? failure,
+    TResult Function(Object? error)? failure,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -333,9 +330,9 @@ class _$Failure<R> implements Failure<R> {
 }
 
 abstract class Failure<R> implements ApiResponse<R> {
-  const factory Failure(final DioError error) = _$Failure<R>;
+  const factory Failure(final Object? error) = _$Failure<R>;
 
-  DioError get error;
+  Object? get error;
   @JsonKey(ignore: true)
   _$$FailureCopyWith<R, _$Failure<R>> get copyWith =>
       throw _privateConstructorUsedError;
